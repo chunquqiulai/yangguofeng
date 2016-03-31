@@ -1,11 +1,13 @@
 <?php
 
-use lib\DbUtil;
+include '/lib/DbUtil.php';
 
 $dbConnection = DbUtil::getInstance();
 var_dump($dbConnection);
-$Ret = $dbConnection->exec('select id,name from yangguofeng_category order by sort');
-var_dump($Ret);
+$rs = $dbConnection->query('select * from yangguofeng_category order by sort');
+$rs->setFetchMode(PDO::FETCH_ASSOC);
+$result_arr = $rs->fetchAll();
+print_r($result_arr);
 exit;
 
 $link = mysql_connect(SAE_MYSQL_HOST_M . ':' . SAE_MYSQL_PORT, SAE_MYSQL_USER, SAE_MYSQL_PASS); //官方提供的常量

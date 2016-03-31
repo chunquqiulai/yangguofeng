@@ -15,4 +15,8 @@ class ToolsUtil {
         return $value;
     }
 
+    public static function getConf() {
+        parse_ini_file('');
+    }
+
 }

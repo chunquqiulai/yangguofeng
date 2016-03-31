@@ -1,9 +1,11 @@
 <?php
+
+
 phpinfo();
-$serverName =   env("MYSQL_PORT_3306_TCP_ADDR", "localhost");
+$serverName = env("MYSQL_PORT_3306_TCP_ADDR", "localhost");
 $databaseName = env("MYSQL_INSTANCE_NAME", "homestead");
-$username =     env("MYSQL_USERNAME", "homestead");
-$password =     env("MYSQL_PASSWORD", "secret");
+$username = env("MYSQL_USERNAME", "homestead");
+$password = env("MYSQL_PASSWORD", "secret");
 
 /**
  * 获取环境变量
@@ -11,8 +13,7 @@ $password =     env("MYSQL_PASSWORD", "secret");
  * @param null $default
  * @return null|string
  */
-function env($key, $default = null)
-{
+function env($key, $default = null) {
     $value = getenv($key);
     if ($value === false) {
         return $default;
