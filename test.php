@@ -26,4 +26,4 @@ $pdo = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $passwo
 //$pdo = new PDO($serverName, $username, $password);
 var_dump($pdo);
 
-echo 'end ^-^ ';
+echo 'end ^-^ ^-^';
