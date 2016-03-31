@@ -1,29 +1,28 @@
 <?php
 
-$link = mysql_connect(SAE_MYSQL_HOST_M . ':' . SAE_MYSQL_PORT, SAE_MYSQL_USER, SAE_MYSQL_PASS); //官方提供的常量
-if ($link) {
-    $db = mysql_select_db(SAE_MYSQL_DB, $link);
-    $query = mysql_query("select id,name from yangguofeng_category order by sort", $link);
-    $menus = array();
-    while ($row = mysql_fetch_assoc($query)) {
-        $menus[] = $row;
-    }
-    mysql_free_result($query);
+include './lib/DbUtil.php';
 
-    $sql = 'select  * from yangguofeng_article where id=' . $_GET['articleid'];
-    $query = mysql_query($sql, $link);
-    if ($query) {
-        $article = mysql_fetch_assoc($query);
-       
-        $sql = 'update yangguofeng_article_count set hits=hits+1 where articleid=' . $_GET['articleid'];
-    	mysql_query($sql, $link);
-        
-		include('tpl/article.tpl.php');
+$dbConnection = DbUtil::getInstance();
+
+if ($dbConnection) {
+    $query = $dbConnection->query('select * from yangguofeng_category order by sort');
+    $query->setFetchMode(PDO::FETCH_ASSOC);
+    $menus = $query->fetchAll();
+
+
+    $query = $dbConnection->prepare('select  * from yangguofeng_article where id=?');
+    $query->execute([$_GET['articleid']]);
+    if ($article = $query->fetch()) {
+        $query = $dbConnection->prepare('select description from yangguofeng_category where id=?');
+        $query->execute([$article['catid']]);
+        $category = $query->fetch();
+
+        $stmt = $dbConnection->query("update yangguofeng_article_count set hits=hits+1 where articleid=".$_GET['articleid']);
+
+        include('tpl/article.tpl.php');
     } else {
         include('tpl/error.tpl.php');
     }
 } else {
     echo "<center><h1>杨国锋正在修理中...联系方式email：514074752@qq.com</h1></certer>";
 }
-
-mysql_close($link);

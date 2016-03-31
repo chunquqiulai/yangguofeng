@@ -27,6 +27,7 @@ class DbUtil {
             $password = ToolsUtil::env("MYSQL_PASSWORD", "");
             self::$instance = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
         }
+        self::$instance->exec('set names utf8');
         return self::$instance;
     }
 

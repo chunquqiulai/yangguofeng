@@ -15,12 +15,13 @@
             <div class="menu">
                 <?php foreach($menus as $key=>$menu){ ?>
                 <a href="list.php?catid=<?php echo $menu['id']?>">
-                    <h2 <?php echo $menu['id'] == $_GET['catid'] || 3 == $menu['id']?'':"class='cur'"; ?>><?php echo $menu['name'];?></h2>
+                    <h2 <?php echo (isset($_GET['catid']) && $menu['id'] == $_GET['catid']) || 3 == $menu['id']?'':"class='cur'"; ?>   >
+                        <?php echo $menu['name'];?>
+                    </h2>
                 </a>
             	<?php }?>
                 </div>
         </header>
         
-        <?php var_dump($articles);?>
     </body>
 </html>
