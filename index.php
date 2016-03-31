@@ -2,7 +2,7 @@
 
 use lib\DbUtil;
 
-$dbConnection = DbUtil\DbUtil::getInstance();
+$dbConnection = DbUtil::getInstance();
 var_dump($dbConnection);
 $Ret = $dbConnection->exec('select id,name from yangguofeng_category order by sort');
 var_dump($Ret);
