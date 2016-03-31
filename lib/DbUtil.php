@@ -1,5 +1,7 @@
 <?php
 
+namespace lib\DbUtil;
+
 /**
  * Description of DbUtil
  *
