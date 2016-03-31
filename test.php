@@ -22,6 +22,8 @@ function env($key, $default = null)
 
 var_dump($serverName);
 
-$pdo = new PDO($serverName, $username, $password);
+$pdo = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
+//$pdo = new PDO($serverName, $username, $password);
 var_dump($pdo);
-echo 'end';
+
+echo 'end ^-^ ';
