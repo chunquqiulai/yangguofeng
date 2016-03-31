@@ -1,4 +1,9 @@
 <?php
+
+$dbConnection = DbUtil::getInstance();
+var_dump($dbConnection);
+exit;
+
 $link = mysql_connect(SAE_MYSQL_HOST_M . ':' . SAE_MYSQL_PORT, SAE_MYSQL_USER, SAE_MYSQL_PASS); //官方提供的常量
 if ($link) {
     $db = mysql_select_db(SAE_MYSQL_DB, $link);
