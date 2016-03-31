@@ -1,6 +1,6 @@
 <?php
 
-include '/lib/DbUtil.php';
+include './lib/DbUtil.php';
 
 $dbConnection = DbUtil::getInstance();
 var_dump($dbConnection);
