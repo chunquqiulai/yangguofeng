@@ -1,5 +1,5 @@
 <?php
-echo 23456;
+phpinfo();
 $serverName =   env("MYSQL_PORT_3306_TCP_ADDR", "localhost");
 $databaseName = env("MYSQL_INSTANCE_NAME", "homestead");
 $username =     env("MYSQL_USERNAME", "homestead");
