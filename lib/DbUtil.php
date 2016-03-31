@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\DbUtil;
+namespace lib;
 
 /**
  * Description of DbUtil
