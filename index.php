@@ -25,5 +25,4 @@ if ($link) {
 } else {
     echo "<center>杨国锋正在修理中...</certer>";
 }
-
 mysql_close($link);
