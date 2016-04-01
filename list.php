@@ -4,7 +4,7 @@ include './lib/DbUtil.php';
 
 $dbConnection = DbUtil::getInstance();
 if ($dbConnection) {
-    $query = $dbConnection->query('select * from yangguofeng_category order by sort');
+    $query = $dbConnection->query('select * from yangguofeng_category  where pid=0  order by sort');
     $query->setFetchMode(PDO::FETCH_ASSOC);
     $menus = $query->fetchAll();
 
@@ -12,13 +12,17 @@ if ($dbConnection) {
     $query->execute([$_GET['catid']]);
     if ($category = $query->fetch()) {
 
-        if (isset($_GET['catid']) && 3 <> $_GET['catid']) {
-            $query = $dbConnection->prepare('select id,title,description,inputtime from yangguofeng_article where catid=:catid');
+        if (isset($_GET['catid']) && 1 <> $_GET['catid']) {
+            $query = $dbConnection->prepare('SELECT a.* 
+                            FROM yangguofeng_category c
+                            JOIN yangguofeng_article a ON c.id=a.catid
+                            WHERE c.pid = :catid');
             $query->bindParam(':catid', $_GET['catid'], PDO::PARAM_INT);
             $query->execute();
         } else {
             $query = $dbConnection->prepare('select id,title,description,inputtime 
                  from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid order by ac.hits desc');
+            $query->execute();
         }
         $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 

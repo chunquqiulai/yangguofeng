@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
     <meta name="keywords" content="杨国锋的记事本,GO,PHP,SQL,C/C++,JAVA,LINUX,HTML/CSS/JAVASCRIPT/JSON...">
-    <meta name="description" content="杨国锋的记事本_<?php echo $category['description'];?>">
+    <meta name="description" content="杨国锋的记事本">
 <meta name="author" content="杨国锋" />
     <link rel="stylesheet" href="/static/css/index.css" media="all" />
 <title>杨国锋的记事本</title>
 
 </head>
     <body>
-        <form action="/insert.php?pwd=<?php echo $_GET['pwd']?>" method="post">
+        <form action="/insert.php?pwd=<?php echo false ==$_GET['pwd']?'':$_GET['pwd'] ?>" method="post">
             <p>title:<input type="text" name="title"></p>
             <p>category:<select name="catid">
                  <?php foreach($menus as $key=>$menu){ ?>

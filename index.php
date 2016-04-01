@@ -5,7 +5,7 @@ include './lib/DbUtil.php';
 $dbConnection = DbUtil::getInstance();    
 
 if ($dbConnection) {
-    $query = $dbConnection->query('select * from yangguofeng_category order by sort');
+    $query = $dbConnection->query('select * from yangguofeng_category where pid=0 order by sort');
     $query->setFetchMode(PDO::FETCH_ASSOC);
     $menus = $query->fetchAll();
 
