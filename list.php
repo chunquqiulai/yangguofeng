@@ -10,18 +10,18 @@ if ($dbConnection) {
 
     $query = $dbConnection->prepare('select description from yangguofeng_category where id=?');
     $query->execute([$_GET['catid']]);
-    if ($category = $query->fetch()) {
-
+    if ($category = $query->fetch(PDO::FETCH_ASSOC)) {
         if (isset($_GET['catid']) && 1 <> $_GET['catid']) {
             $query = $dbConnection->prepare('SELECT a.* 
                             FROM yangguofeng_category c
                             JOIN yangguofeng_article a ON c.id=a.catid
-                            WHERE c.pid = :catid');
+                            WHERE c.pid = :catid 
+                            ORDER BY id DESC');
             $query->bindParam(':catid', $_GET['catid'], PDO::PARAM_INT);
             $query->execute();
         } else {
             $query = $dbConnection->prepare('select id,title,description,inputtime 
-                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid order by ac.hits desc');
+                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid order by a.id desc');
             $query->execute();
         }
         $articles = $query->fetchAll(PDO::FETCH_ASSOC);
