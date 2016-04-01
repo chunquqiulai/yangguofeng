@@ -1,6 +1,6 @@
 <?php
-
-
+echo '^_^';
+exit;
 phpinfo();
 $serverName = env("MYSQL_PORT_3306_TCP_ADDR", "localhost");
 $databaseName = env("MYSQL_INSTANCE_NAME", "homestead");
