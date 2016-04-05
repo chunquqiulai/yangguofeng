@@ -37,11 +37,16 @@ header a{
         width: 850px;
         margin: 0 auto;}
 .list li{
-    cursor: pointer
+    cursor: pointer;
+    padding: 0px 0 20px;
+    border-top: 1px solid #eaecef;
+    text-indent:2em
 }
+ul {list-style: none;}
+ol {list-style: none;}
 
 .list li:hover{
-    box-shadow: 10px 10px 5px #888991;
+    background-color: #d9edf7;
 } 
 
 .article{  height: auto;
