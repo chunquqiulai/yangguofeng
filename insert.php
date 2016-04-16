@@ -16,12 +16,13 @@ if ($dbConnection) {
         if ($_POST) {
             $_POST['description'] = $_POST['description'] ? $_POST['description'] : mb_substr(strip_tags(htmlspecialchars_decode($_POST['content'])), 0, 700);
 
-            $sth = $dbConnection->prepare('INSERT INTO yangguofeng_article (catid, title, description,content,inputtime) 
-        VALUES (:catid,:title,:description,:content,:inputtime)');
+            $sth = $dbConnection->prepare('INSERT INTO yangguofeng_article (catid, title, description,content,status,inputtime) 
+        VALUES (:catid,:title,:description,:content,:status,:inputtime)');
             $sth->bindParam(':catid', $_POST['catid'], PDO::PARAM_INT);
             $sth->bindParam(':title', $_POST['title'], PDO::PARAM_STR, 100);
             $sth->bindParam(':description', $_POST['description'], PDO::PARAM_STR, 255);
             $sth->bindParam(':content', $_POST['content'], PDO::PARAM_STR);
+            $sth->bindParam(':status', $_POST['status'], PDO::PARAM_INT);
             $sth->bindParam(':inputtime', $_SERVER['REQUEST_TIME']);
             $ret = $sth->execute();
 

@@ -18,6 +18,12 @@
                 </select></p>
             <p>description:<textarea rows="5" cols="100" name="description"></textarea></p>
             <p>content:<textarea  rows="30" cols="150" name="content"></textarea></p>
+            <p>权限设置:
+                <select name="status">
+                    <option value="1">大家可见</option>
+                    <option value="2">自己可见</option>
+                </select>
+            </p>
             <p><input type="submit" value="submit"></p>
         </form>
     </body>

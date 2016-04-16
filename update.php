@@ -17,11 +17,12 @@ if ($dbConnection) {
         if ($_POST) {
             $_POST['description'] = $_POST['description'] ? $_POST['description'] : mb_substr(strip_tags(htmlspecialchars_decode($_POST['content'])), 0, 700);
 
-            $sth = $dbConnection->prepare('UPDATE yangguofeng_article SET title=:title,description=:description,content=:content,updatetime=:updatetime where id=:id');
+            $sth = $dbConnection->prepare('UPDATE yangguofeng_article SET title=:title,description=:description,content=:content,:status,updatetime=:updatetime where id=:id');
             $sth->bindParam(':title', $_POST['title'], PDO::PARAM_STR, 100);
             $sth->bindParam(':description', $_POST['description'], PDO::PARAM_STR, 255);
             $sth->bindParam(':content', $_POST['content'], PDO::PARAM_STR);
             $sth->bindParam(':updatetime', $_SERVER['REQUEST_TIME']);
+            $sth->bindParam(':status', $_POST['status'], PDO::PARAM_INT);
             $sth->bindParam(':id', $_GET['articleid']);
             $ret = $sth->execute();
             header('Location: /article.php?articleid=' . $_GET['articleid']);

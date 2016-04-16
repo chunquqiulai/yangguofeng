@@ -16,12 +16,13 @@ if ($dbConnection) {
                             FROM yangguofeng_category c
                             JOIN yangguofeng_article a ON c.id=a.catid
                             WHERE c.pid = :catid 
+                            AND a.status = 1
                             ORDER BY id DESC');
             $query->bindParam(':catid', $_GET['catid'], PDO::PARAM_INT);
             $query->execute();
         } else {
             $query = $dbConnection->prepare('select id,title,description,inputtime 
-                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid order by a.id desc');
+                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid  WHERE  a.status = 1 order by a.id desc');
             $query->execute();
         }
         $articles = $query->fetchAll(PDO::FETCH_ASSOC);
