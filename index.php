@@ -10,7 +10,7 @@ if ($dbConnection) {
     $menus = $query->fetchAll();
 
     $query = $dbConnection->prepare('select id,title,description,inputtime 
-                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid order by a.id desc');
+                 from yangguofeng_article a join yangguofeng_article_count ac on a.id = ac.articleid WHERE  a.status = 1 order by a.id desc');
     $query->execute();
     $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
