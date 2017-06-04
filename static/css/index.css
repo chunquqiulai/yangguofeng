@@ -49,6 +49,10 @@ ol {list-style: none;}
     background-color: #d9edf7;
 } 
 
+.list li p{
+	font-weight:100;
+}
+
 .article{  height: auto;
            width: 850px;
            margin: 0 auto;}
