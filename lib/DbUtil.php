@@ -24,7 +24,7 @@ class DbUtil {
             $serverName = ToolsUtil::env("MYSQL_PORT_3306_TCP_ADDR", "127.0.0.1");
             $databaseName = ToolsUtil::env("MYSQL_INSTANCE_NAME", "yangguofeng");
             $username = ToolsUtil::env("MYSQL_USERNAME", "root");
-            $password = ToolsUtil::env("MYSQL_PASSWORD", "");
+            $password = ToolsUtil::env("MYSQL_PASSWORD", "mysqlpasswd");
             self::$instance = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
         }
         self::$instance->exec('set names utf8');
